@@ -46,7 +46,7 @@ public class CandidateController {
 		return candidateServiceInterface.getCandidateByCandidateId(candidateId);
 	}
 	
-//	http://localhost:8081/candidateApi/candidate
+//	http://localhost:8081/candidateApi/candidates
 	@RequestMapping(value="candidates" ,method=RequestMethod.GET)
 	public List<Candidate> getAllCandidate() {
 		// TODO Auto-generated method stub

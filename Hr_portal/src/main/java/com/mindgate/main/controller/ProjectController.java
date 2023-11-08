@@ -31,13 +31,13 @@ public class ProjectController {
 		return projectServiceInterface.UpdateProject(projectdetails);
 	}
 
-	// http://localhost:8081/projectapi/getone/PRO10001
+	// http://localhost:8081/projectapi/getone/PRO1001
 	@RequestMapping(value = "getone/{projectId}", method = RequestMethod.GET)
 	public Project getprojectByprojectId(@PathVariable String projectId) {
 		return projectServiceInterface.getprojectByprojectId(projectId);
 	}
 
-	// http://localhost:8081/projectapi/delete/PRO10001
+	// http://localhost:8081/projectapi/delete/PRO1001
 	@RequestMapping(value = "delete/{projectId}", method = RequestMethod.DELETE)
 	public boolean deleteProject(@PathVariable String projectId) {
 		return projectServiceInterface.deleteProject(projectId);

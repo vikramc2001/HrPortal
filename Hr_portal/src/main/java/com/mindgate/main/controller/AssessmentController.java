@@ -13,7 +13,7 @@ import com.mindgate.main.domain.Assessment;
 import com.mindgate.main.service.AssessmentServiceInterface;
 
 @RestController
-@RequestMapping("assessmentApi")
+@RequestMapping("assessmentapi")
 public class AssessmentController {
 
 	@Autowired
