@@ -47,4 +47,8 @@ public class EmployeeController {
 	public Employee LoginDetails(@RequestBody Employee employee) {
 		return employeeServiceInterface.loginDetails(employee);
 	}
+	@RequestMapping(value="getworkbench",method=RequestMethod.GET)
+	public List<Employee> getWorkBenchEmployee(Employee employee) {
+		return employeeServiceInterface.getWorkBenchEmployee(employee);
+	}
 }
