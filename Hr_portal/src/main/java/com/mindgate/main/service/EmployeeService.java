@@ -44,4 +44,23 @@ public class EmployeeService implements EmployeeServiceInterface {
 		return employeeRepositoryInterface.getAllEmployees();
 	}
 
+	@Override
+	public Employee loginDetails(Employee employee) {
+		String employeeId = employee.getEmployeeId();
+		String password = employee.getPassword();
+		Employee oldEmployee = employeeRepositoryInterface.getEmployeeByEmployeeId(employeeId);
+		
+		if(employeeId.equals(oldEmployee.getEmployeeId()))
+				{
+				if( password.equals(oldEmployee.getPassword())){
+					return oldEmployee;
+				
+				}
+		}
+		
+		return null;
+	}
+
+
+
 }

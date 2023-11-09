@@ -19,7 +19,7 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 	private final static String DELETE_EXISTING_EMPLOYEE="delete from employee_details where employee_id=?";
 	private final static String SELECT_ALL_EMPLOYEE = "select * from employee_details,project_details where employee_details.project_id=project_details.project_id(+)";
 	private final static String SELECT_ONE_EMPLOYEE="select * from employee_details,project_details where employee_details.project_id=project_details.project_id(+) and employee_id=?";
-
+   //private final static String login_Employee="select * from employee_details where employee_id=? and password=?";
 	@Override
 	public boolean addNewEmployee(Employee employee) {
 		Object []parameters={
@@ -83,4 +83,29 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 		return jdbcTemplate.query(SELECT_ALL_EMPLOYEE, employeeRowMapper);
 	}
 
+	
+//	public Employee loginDetails(Employee employee) {
+//		Object parameter[]= {employee.getEmployeeId()};
+//		EmployeeRowMapper employeeRowMapper=new EmployeeRowMapper();
+//		
+//	Employee check=	jdbcTemplate.queryForObject(login_Employee,  employeeRowMapper,parameter);
+//	    if(check!=null) {
+//	    if( check.getPassword().equals(employee.getPassword())) {
+//	    	System.out.println("login successfully");
+//	    	  return check;
+//	    	  
+//	    }
+//	    else {
+//	    	System.out.println("login failed");
+//	    	return null;
+//	    }
+//		
+//	}
+//	    
+//	else {
+//		System.out.println("enter value propper");
+//	}
+//	    return null;
+//	}
+	
 }

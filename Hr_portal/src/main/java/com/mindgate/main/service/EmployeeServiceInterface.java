@@ -15,4 +15,6 @@ public interface EmployeeServiceInterface {
 	Employee getEmployeeByEmployeeId(String employeeId);
 	
 	List<Employee> getAllEmployees();
+	
+	public Employee loginDetails(Employee employee);
 }

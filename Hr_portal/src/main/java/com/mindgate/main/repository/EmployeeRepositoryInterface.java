@@ -16,4 +16,6 @@ public interface EmployeeRepositoryInterface {
 	
 	List<Employee> getAllEmployees();
 
+	//public Employee loginDetails(Employee employee);
+
 }

@@ -43,4 +43,8 @@ public class EmployeeController {
 	public Employee updateEmployee(@RequestBody Employee employee) {
 		return employeeServiceInterface.updateEmployee(employee);
 	}
+	@RequestMapping(value="loginvalidation" ,method=RequestMethod.GET)
+	public Employee LoginDetails(@RequestBody Employee employee) {
+		return employeeServiceInterface.loginDetails(employee);
+	}
 }
