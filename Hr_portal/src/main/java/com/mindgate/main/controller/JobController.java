@@ -43,4 +43,10 @@ public class JobController {
 	public List<Job> getAllJob() {
 		return jobServiceInterface.getAllJob();
 	}
+	
+	@RequestMapping(value = "getall/{employeeId}",method = RequestMethod.GET)
+	public List<Job> getAllJobByEmployee(@PathVariable String employeeId) {
+		// TODO Auto-generated method stub
+		return jobServiceInterface.getAllJobByEmployee(employeeId);
+	}
 }

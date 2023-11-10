@@ -44,4 +44,10 @@ public class JobService implements JobServiceInterface {
 		return jobRepositoryInterface.getAllJob();
 	}
 
+	@Override
+	public List<Job> getAllJobByEmployee(String employeeId) {
+		// TODO Auto-generated method stub
+		return jobRepositoryInterface.getAllJobByEmployee(employeeId);
+	}
+
 }

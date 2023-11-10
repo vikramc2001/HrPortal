@@ -18,4 +18,6 @@ public interface JobRepositoryInterface {
 	public Job getOneJob(String jobId);
 	
 	public List<Job> getAllJob();
+	
+	public List<Job> getAllJobByEmployee(String employeeId);
 }

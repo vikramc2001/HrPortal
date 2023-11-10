@@ -9,15 +9,18 @@ public class Job {
 	private String skill2;
 	private String skill3;
 	private String projectId;
+	private String employeeId;
 	private int requiredEmployees;
 	private String status;
 	private Project project;
+	private Employee employee;
 
 	public Job() {
 	}
 
 	public Job(String jobId, String title, String qualification, String skill1, String skill2, String skill3,
-			String projectId, int requiredEmployees, String status, Project project) {
+			String projectId, String employeeId, int requiredEmployees, String status, Project project,
+			Employee employee) {
 		super();
 		this.jobId = jobId;
 		this.title = title;
@@ -26,9 +29,11 @@ public class Job {
 		this.skill2 = skill2;
 		this.skill3 = skill3;
 		this.projectId = projectId;
+		this.employeeId = employeeId;
 		this.requiredEmployees = requiredEmployees;
 		this.status = status;
 		this.project = project;
+		this.employee = employee;
 	}
 
 	public String getJobId() {
@@ -103,6 +108,23 @@ public class Job {
 		this.status = status;
 	}
 
+	public String getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	
+
 	public Project getProject() {
 		return project;
 	}
@@ -114,9 +136,10 @@ public class Job {
 	@Override
 	public String toString() {
 		return "Job [jobId=" + jobId + ", title=" + title + ", qualification=" + qualification + ", skill1=" + skill1
-				+ ", skill2=" + skill2 + ", skill3=" + skill3 + ", projectId=" + projectId + ", requiredEmployees="
-				+ requiredEmployees + ", status=" + status + ", project=" + project + "]";
+				+ ", skill2=" + skill2 + ", skill3=" + skill3 + ", projectId=" + projectId + ", employeeId="
+				+ employeeId + ", requiredEmployees=" + requiredEmployees + ", status=" + status + ", project="
+				+ project + ", employee=" + employee + "]";
 	}
 
-		
+	
 }

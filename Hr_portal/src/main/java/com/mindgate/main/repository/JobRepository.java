@@ -14,16 +14,18 @@ public class JobRepository implements JobRepositoryInterface {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	private final static String INSERT_NEW_JOB_DESCRIPTION = "insert into job_description values('JOB' || job_sequence.nextVal,?,?,?,?,?,?,?,?)";
+	private final static String INSERT_NEW_JOB_DESCRIPTION = "insert into job_description values('JOB' || job_sequence.nextVal,?,?,?,?,?,?,?,?,?)";
 	private final static String DELETE_EXISTING_JOB_DESCRIPTION = "delete from job_description where job_Id=?";
-	private final static String UPDATE_JOB_DESCRIPTION = "update job_description set title=?,qualification=?,skill_1=?,skill_2=?,skill_3=?,project_id=?,required_employees=?,status=? where job_id=?";
-	private final static String SELECT_ALL_JOB = "select * from job_description j,project_details p where j.project_id=p.project_id(+)";
-	private final static String SELECT_ONE_JOB = "select * from job_description j,project_details p where j.project_id=p.project_id(+) and job_id=?";
+	private final static String UPDATE_JOB_DESCRIPTION = "update job_description set title=?,qualification=?,skill_1=?,skill_2=?,skill_3=?,project_id=?,employee_id=?,required_employees=?,status=? where job_id=?";
+	private final static String SELECT_ALL_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+)";
+	private final static String SELECT_ONE_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and job_id=?";
 
+	private final static String SELECT_JOB_BY_TL="select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and j.employee_id=?";
+	
 	@Override
 	public boolean addJobDescription(Job job) {
 		Object[] parameters = { job.getTitle(), job.getQualification(), job.getSkill1(), job.getSkill2(),
-				job.getSkill3(), job.getProjectId(), job.getRequiredEmployees(), job.getStatus() };
+				job.getSkill3(), job.getProjectId(),job.getEmployeeId(), job.getRequiredEmployees(), job.getStatus() };
 		jdbcTemplate.update(INSERT_NEW_JOB_DESCRIPTION, parameters);
 		return true;
 	}
@@ -31,7 +33,7 @@ public class JobRepository implements JobRepositoryInterface {
 	@Override
 	public Job updateJob(Job job) {
 		Object[] parameters = { job.getTitle(), job.getQualification(), job.getSkill1(), job.getSkill2(),
-				job.getSkill3(), job.getProjectId(), job.getRequiredEmployees(), job.getStatus(), job.getJobId() };
+				job.getSkill3(), job.getProjectId(),job.getEmployeeId(), job.getRequiredEmployees(), job.getStatus(), job.getJobId() };
 		int rowCount = jdbcTemplate.update(UPDATE_JOB_DESCRIPTION, parameters);
 		if (rowCount > 0)
 			return getOneJob(job.getJobId());
@@ -58,6 +60,12 @@ public class JobRepository implements JobRepositoryInterface {
 	public List<Job> getAllJob() {
 		JobRowMapper jobMapper = new JobRowMapper();
 		return jdbcTemplate.query(SELECT_ALL_JOB, jobMapper);
+	}
+
+	@Override
+	public List<Job> getAllJobByEmployee(String employeeId) {
+		JobRowMapper jobMapper = new JobRowMapper();
+		return jdbcTemplate.query(SELECT_JOB_BY_TL, jobMapper ,employeeId);
 	}
 
 }
