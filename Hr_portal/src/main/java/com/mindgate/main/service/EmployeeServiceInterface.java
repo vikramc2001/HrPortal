@@ -17,4 +17,9 @@ public interface EmployeeServiceInterface {
 	List<Employee> getAllEmployees();
 	
 	public Employee loginDetails(Employee employee);
+	
+	
+	public List<Employee> getWorkBenchEmployee(Employee employee);
+		
+	
 }

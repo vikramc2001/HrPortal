@@ -57,8 +57,14 @@ public class EmployeeService implements EmployeeServiceInterface {
 				
 				}
 		}
-		
+		 System.out.println("invalid data");
 		return null;
+	}
+
+	@Override
+	public List<Employee> getWorkBenchEmployee(Employee employee) {
+		
+		return employeeRepositoryInterface.getWorkBenchEmployee(employee);
 	}
 
 
