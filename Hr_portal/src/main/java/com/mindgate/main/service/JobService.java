@@ -50,4 +50,10 @@ public class JobService implements JobServiceInterface {
 		return jobRepositoryInterface.getAllJobByEmployee(employeeId);
 	}
 
+	@Override
+	public List<Job> getPendingJobDiscription() {
+		
+		return jobRepositoryInterface.getPendingJobDiscription();
+	}
+
 }

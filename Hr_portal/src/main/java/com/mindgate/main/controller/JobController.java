@@ -51,4 +51,8 @@ public class JobController {
 		// TODO Auto-generated method stub
 		return jobServiceInterface.getAllJobByEmployee(employeeId);
 	}
+	@RequestMapping(value="getpending",method=RequestMethod.GET)
+	public List<Job> getPendingJobDiscription() {
+		return jobServiceInterface.getPendingJobDiscription();
+	}
 }
