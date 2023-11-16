@@ -45,12 +45,12 @@ public class EmployeeController {
 	public Employee updateEmployee(@RequestBody Employee employee) {
 		return employeeServiceInterface.updateEmployee(employee);
 	}
-	@RequestMapping(value="loginvalidation" ,method=RequestMethod.GET)
+	@RequestMapping(value="loginvalidation" ,method=RequestMethod.POST)
 	public Employee LoginDetails(@RequestBody Employee employee) {
 		return employeeServiceInterface.loginDetails(employee);
 	}
-	@RequestMapping(value="getworkbench",method=RequestMethod.GET)
-	public List<Employee> getWorkBenchEmployee(Employee employee) {
-		return employeeServiceInterface.getWorkBenchEmployee(employee);
+	@RequestMapping(value="getworkbench/{designation}",method=RequestMethod.GET)
+	public List<Employee> getWorkBenchEmployee(@PathVariable String designation) {
+		return employeeServiceInterface.getWorkBenchEmployee(designation);
 	}
 }

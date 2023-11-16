@@ -62,9 +62,9 @@ public class EmployeeService implements EmployeeServiceInterface {
 	}
 
 	@Override
-	public List<Employee> getWorkBenchEmployee(Employee employee) {
+	public List<Employee> getWorkBenchEmployee(String designation) {
 		
-		return employeeRepositoryInterface.getWorkBenchEmployee(employee);
+		return employeeRepositoryInterface.getWorkBenchEmployee(designation);
 	}
 
 

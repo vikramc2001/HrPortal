@@ -20,13 +20,14 @@ public class JobRepository implements JobRepositoryInterface {
 	private final static String SELECT_ALL_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status not in 'Closed'";
 	private final static String SELECT_ONE_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and job_id=?";
 
-	private final static String SELECT_JOB_BY_TL="select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and j.employee_id=?";
-	
-	private final static String SELECT_PENDING_JOB="select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status  in 'pending'";
+	private final static String SELECT_JOB_BY_TL = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and j.employee_id=?";
+
+	private final static String SELECT_PENDING_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status  in 'pending'";
+
 	@Override
 	public boolean addJobDescription(Job job) {
 		Object[] parameters = { job.getTitle(), job.getQualification(), job.getSkill1(), job.getSkill2(),
-				job.getSkill3(), job.getProjectId(),job.getEmployeeId(), job.getRequiredEmployees(), job.getStatus() };
+				job.getSkill3(), job.getProjectId(), job.getEmployeeId(), job.getRequiredEmployees(), job.getStatus() };
 		jdbcTemplate.update(INSERT_NEW_JOB_DESCRIPTION, parameters);
 		return true;
 	}
@@ -34,7 +35,8 @@ public class JobRepository implements JobRepositoryInterface {
 	@Override
 	public Job updateJob(Job job) {
 		Object[] parameters = { job.getTitle(), job.getQualification(), job.getSkill1(), job.getSkill2(),
-				job.getSkill3(), job.getProjectId(),job.getEmployeeId(), job.getRequiredEmployees(), job.getStatus(), job.getJobId() };
+				job.getSkill3(), job.getProjectId(), job.getEmployeeId(), job.getRequiredEmployees(), job.getStatus(),
+				job.getJobId() };
 		int rowCount = jdbcTemplate.update(UPDATE_JOB_DESCRIPTION, parameters);
 		if (rowCount > 0)
 			return getOneJob(job.getJobId());
@@ -53,7 +55,7 @@ public class JobRepository implements JobRepositoryInterface {
 
 	@Override
 	public Job getOneJob(String jobId) {
-		JobRowMapper jobRowMapper=new JobRowMapper();
+		JobRowMapper jobRowMapper = new JobRowMapper();
 		return jdbcTemplate.queryForObject(SELECT_ONE_JOB, jobRowMapper, jobId);
 	}
 
@@ -66,15 +68,15 @@ public class JobRepository implements JobRepositoryInterface {
 	@Override
 	public List<Job> getAllJobByEmployee(String employeeId) {
 		JobRowMapper jobMapper = new JobRowMapper();
-		return jdbcTemplate.query(SELECT_JOB_BY_TL, jobMapper ,employeeId);
+		return jdbcTemplate.query(SELECT_JOB_BY_TL, jobMapper, employeeId);
 	}
 
 	@Override
 	public List<Job> getPendingJobDiscription() {
 		JobRowMapper jobMapper = new JobRowMapper();
 		return jdbcTemplate.query(SELECT_PENDING_JOB, jobMapper);
-		
 	}
-	
 
+	 
+	
 }

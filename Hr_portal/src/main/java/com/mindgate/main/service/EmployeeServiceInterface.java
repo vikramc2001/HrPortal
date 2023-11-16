@@ -19,7 +19,7 @@ public interface EmployeeServiceInterface {
 	public Employee loginDetails(Employee employee);
 	
 	
-	public List<Employee> getWorkBenchEmployee(Employee employee);
+	public List<Employee> getWorkBenchEmployee(String designation);
 		
 	
 }
