@@ -19,6 +19,7 @@ public interface JobServiceInterface {
 	public List<Job> getAllJobByEmployee(String employeeId);
 	
 	public List<Job> getPendingJobDiscription();
+	public List<Job> getPostJobDiscription();
 	
 	
 }

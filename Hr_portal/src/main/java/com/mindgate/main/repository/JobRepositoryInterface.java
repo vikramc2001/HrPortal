@@ -23,4 +23,5 @@ public interface JobRepositoryInterface {
 	
 	public List<Job> getPendingJobDiscription();
 	
+	public List<Job> getPostJobDiscription();
 }

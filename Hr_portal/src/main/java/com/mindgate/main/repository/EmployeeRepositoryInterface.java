@@ -16,7 +16,7 @@ public interface EmployeeRepositoryInterface {
 	
 	List<Employee> getAllEmployees();
 	
-	public List<Employee> getWorkBenchEmployee(String designation);
+	public List<Employee> getWorkBenchEmployee(Employee employee);
 
 	
 

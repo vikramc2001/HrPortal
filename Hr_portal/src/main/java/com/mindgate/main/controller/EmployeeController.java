@@ -49,8 +49,8 @@ public class EmployeeController {
 	public Employee LoginDetails(@RequestBody Employee employee) {
 		return employeeServiceInterface.loginDetails(employee);
 	}
-	@RequestMapping(value="getworkbench/{designation}",method=RequestMethod.GET)
-	public List<Employee> getWorkBenchEmployee(@PathVariable String designation) {
-		return employeeServiceInterface.getWorkBenchEmployee(designation);
+	@RequestMapping(value="getworkbench",method=RequestMethod.POST)
+	public List<Employee> getWorkBenchEmployee(@RequestBody Employee employee) {
+		return employeeServiceInterface.getWorkBenchEmployee(employee);
 	}
 }

@@ -55,5 +55,9 @@ public class JobController {
 	public List<Job> getPendingJobDiscription() {
 		return jobServiceInterface.getPendingJobDiscription();
 	}
+	@RequestMapping(value="getpost",method=RequestMethod.GET)
+	public List<Job> getPostJobDiscription() {
+		return jobServiceInterface.getPostJobDiscription();
+	}
 	
 }

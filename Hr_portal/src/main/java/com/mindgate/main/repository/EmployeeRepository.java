@@ -21,7 +21,7 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 	private final static String SELECT_ONE_EMPLOYEE="select * from employee_details,project_details where employee_details.project_id=project_details.project_id(+) and employee_id=?";
    //private final static String login_Employee="select * from employee_details where employee_id=? and password=?";
 	
-	private final static String GetWorkBench="select * from employee_details,project_details where employee_details.project_id=project_details.project_id(+) and employee_details.project_id is NUll and designation=?";
+	private final static String GetWorkBench="select * from employee_details ,project_details where employee_details.project_id=project_details.project_id(+) and employee_details.project_id is NUll and designation=? and ? in (skill1,skill2,skill3) and ? in (skill1,skill2,skill3) ";
 	@Override
 	public boolean addNewEmployee(Employee employee) {
 		Object []parameters={
@@ -95,9 +95,10 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 	}
 
 	@Override
-	public List<Employee> getWorkBenchEmployee(String designation) {
+	public List<Employee> getWorkBenchEmployee(Employee employee) {
+		Object []parameter= {employee.getDesignation(),employee.getSkill1(),employee.getSkill2()};
 		EmployeeRowMapper employeeRowMapper=new EmployeeRowMapper();
-		return jdbcTemplate.query(GetWorkBench, employeeRowMapper ,designation);
+		return jdbcTemplate.query(GetWorkBench, employeeRowMapper ,parameter);
 	}
 
 	

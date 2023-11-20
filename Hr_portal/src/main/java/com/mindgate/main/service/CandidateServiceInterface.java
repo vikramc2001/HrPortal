@@ -15,4 +15,7 @@ public interface CandidateServiceInterface {
     public Candidate getCandidateByCandidateId(String candidateId);
     
     public List<Candidate> getAllCandidate();
+    public List<Candidate> getCandidateApplication(String jobId );
+    
+    public List<Candidate> getCandidateByStatus(String status);
 }

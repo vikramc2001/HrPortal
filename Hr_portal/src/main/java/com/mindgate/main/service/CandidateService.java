@@ -43,4 +43,16 @@ public class CandidateService implements CandidateServiceInterface {
 		return candidateRepositoryInterface.getAllCandidate();
 	}
 
+	@Override
+	public List<Candidate> getCandidateApplication(String jobId) {
+		// TODO Auto-generated method stub
+		return candidateRepositoryInterface.getCandidateApplication(jobId);
+	}
+
+	@Override
+	public List<Candidate> getCandidateByStatus(String status) {
+		// TODO Auto-generated method stub
+		return candidateRepositoryInterface.getCandidateByStatus(status);
+	}
+
 }

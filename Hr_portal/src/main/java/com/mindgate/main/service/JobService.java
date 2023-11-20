@@ -56,4 +56,10 @@ public class JobService implements JobServiceInterface {
 		return jobRepositoryInterface.getPendingJobDiscription();
 	}
 
+	@Override
+	public List<Job> getPostJobDiscription() {
+		// TODO Auto-generated method stub
+		return jobRepositoryInterface.getPostJobDiscription();
+	}
+
 }

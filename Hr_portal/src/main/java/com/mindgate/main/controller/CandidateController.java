@@ -54,5 +54,16 @@ public class CandidateController {
 		// TODO Auto-generated method stub
 		return candidateServiceInterface.getAllCandidate();
 	}
+	// http://localhost:8081/candidateApi/getApplication
+	@RequestMapping(value="getApplication/{jobId}" ,method=RequestMethod.GET)
+	public List<Candidate> getCandidateApplication(@PathVariable String jobId){
+		return candidateServiceInterface.getCandidateApplication(jobId);
+	}
+
+	// http://localhost:8081/candidateApi/getcandidateBy
+		@RequestMapping(value="getcandidateBy/{status}" ,method=RequestMethod.GET)
+		public List<Candidate> getCandidateByStatus(@PathVariable String status){
+			return candidateServiceInterface.getCandidateByStatus(status);
+		}
 
 }
