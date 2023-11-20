@@ -16,16 +16,16 @@ public class Candidate {
 	private String email;
 	private Date applyDate;
 	private String jobId;
+	private String status;
 	private Job job;
-	
+	 
 	public Candidate() {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Candidate(String candidateId, String candidateName, String skills, String qualification, String passedOutYear,
-			Date interviewDate, String experience, String grade, Long phone, String email, Date applyDate, String jobId,
-			Job job) {
+	public Candidate(String candidateId, String candidateName, String skills, String qualification,
+			String passedOutYear, Date interviewDate, String experience, String grade, Long phone, String email,
+			Date applyDate, String jobId, String status, Job job) {
 		super();
 		this.candidateId = candidateId;
 		this.candidateName = candidateName;
@@ -39,6 +39,7 @@ public class Candidate {
 		this.email = email;
 		this.applyDate = applyDate;
 		this.jobId = jobId;
+		this.status = status;
 		this.job = job;
 	}
 
@@ -86,7 +87,6 @@ public class Candidate {
 		return interviewDate;
 	}
 
-
 	public void setInterviewDate(Date interviewDate) {
 		this.interviewDate = interviewDate;
 	}
@@ -127,11 +127,9 @@ public class Candidate {
 		return applyDate;
 	}
 
-
 	public void setApplyDate(Date applyDate) {
 		this.applyDate = applyDate;
 	}
-
 
 	public String getJobId() {
 		return jobId;
@@ -139,6 +137,14 @@ public class Candidate {
 
 	public void setJobId(String jobId) {
 		this.jobId = jobId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Job getJob() {
@@ -154,7 +160,7 @@ public class Candidate {
 		return "Candidate [candidateId=" + candidateId + ", candidateName=" + candidateName + ", skills=" + skills
 				+ ", qualification=" + qualification + ", passedOutYear=" + passedOutYear + ", interviewDate="
 				+ interviewDate + ", experience=" + experience + ", grade=" + grade + ", phone=" + phone + ", email="
-				+ email + ", applyDate=" + applyDate + ", jobId=" + jobId + ", job=" + job + "]";
+				+ email + ", applyDate=" + applyDate + ", jobId=" + jobId + ", status=" + status + ", job=" + job + "]";
 	}
 	
-}
+	}

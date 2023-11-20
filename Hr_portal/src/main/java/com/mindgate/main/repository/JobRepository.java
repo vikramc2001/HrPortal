@@ -23,7 +23,8 @@ public class JobRepository implements JobRepositoryInterface {
 	private final static String SELECT_JOB_BY_TL = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and j.employee_id=?";
 
 	private final static String SELECT_PENDING_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status  in 'pending'";
-
+    
+	
 	@Override
 	public boolean addJobDescription(Job job) {
 		Object[] parameters = { job.getTitle(), job.getQualification(), job.getSkill1(), job.getSkill2(),
@@ -76,6 +77,8 @@ public class JobRepository implements JobRepositoryInterface {
 		JobRowMapper jobMapper = new JobRowMapper();
 		return jdbcTemplate.query(SELECT_PENDING_JOB, jobMapper);
 	}
+
+	 
 
 	 
 	

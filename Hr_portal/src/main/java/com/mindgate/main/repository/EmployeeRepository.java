@@ -14,8 +14,8 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	private final static String INSERT_NEW_EMPLOYEE = "insert into employee_details values('EMP'||employee_sequence.nextVal,?,?,?,?,?,?,?,?,?,?,?)";
-	private final static String UPDATE_EXISTING_EMPLOYEE="update employee_details set password=?,first_name=?,last_name=?,gender=?,phone_no=?,email=?,date_of_birth=?,designation=?,salary=?,project_id=?,manager_id=? where employee_id=?";
+	private final static String INSERT_NEW_EMPLOYEE = "insert into employee_details values('EMP'||employee_sequence.nextVal,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private final static String UPDATE_EXISTING_EMPLOYEE="update employee_details set password=?,first_name=?,last_name=?,gender=?,phone_no=?,email=?,date_of_birth=?,designation=?,skill1=?,skill2=?,skill3=?,salary=?,project_id=?,manager_id=? where employee_id=?";
 	private final static String DELETE_EXISTING_EMPLOYEE="delete from employee_details where employee_id=?";
 	private final static String SELECT_ALL_EMPLOYEE = "select * from employee_details,project_details where employee_details.project_id=project_details.project_id(+)";
 	private final static String SELECT_ONE_EMPLOYEE="select * from employee_details,project_details where employee_details.project_id=project_details.project_id(+) and employee_id=?";
@@ -33,9 +33,13 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 				employee.getEmail(),
 				employee.getDateOfBirth(),
 				employee.getDesignation(),
+				employee.getSkill1(),
+				employee.getSkill2(),
+				employee.getSkill3(),
 				employee.getSalary(),
 				employee.getProjectId(),
-				employee.getManagerId()
+				employee.getManagerId(),
+				
 		};
 		int rowCount=jdbcTemplate.update(INSERT_NEW_EMPLOYEE, parameters);
 		if(rowCount>0)
@@ -54,10 +58,15 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 				employee.getEmail(),
 				employee.getDateOfBirth(),
 				employee.getDesignation(),
+				employee.getSkill1(),
+				employee.getSkill2(),
+				employee.getSkill3(),
 				employee.getSalary(),
 				employee.getProjectId(),
 				employee.getManagerId(),
-				employee.getEmployeeId()
+				employee.getEmployeeId(),
+				
+				
 		};
 		int rowCount=jdbcTemplate.update(UPDATE_EXISTING_EMPLOYEE, parameters);
 		if(rowCount>0)

@@ -25,14 +25,14 @@ public class CandidateRowMapper implements RowMapper<Candidate> {
 		Long phone = rs.getLong("phone");
 		String email = rs.getString("email");
 		Date applyDate = rs.getDate("apply_date");
+		String status=rs.getString("status");
 		String jobId = rs.getString("job_id");
+		
 		
 		JobRowMapper jobRowMapper=new JobRowMapper();
 		Job job=jobRowMapper.mapRow(rs, rowNum);
 		
-		Candidate candidate = new Candidate(candidateId, candidateName, skills, qualification, passedOutYear,
-				interviewDate, experience, grade, phone, email, applyDate, jobId, job);
-
+		Candidate candidate = new Candidate(candidateId, candidateName, skills, qualification, passedOutYear, interviewDate, experience, grade, phone, email, applyDate, jobId, status, job);
 		return candidate;
 
 	}

@@ -14,11 +14,11 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	private final static String Insert_New_Candidate = "insert into candidate_details values('CAN'||candidate_sequence.nextVal,?,?,?,?,?,?,?,?,?,?,?)";
+	private final static String Insert_New_Candidate = "insert into candidate_details values('CAN'||candidate_sequence.nextVal,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private final static String Update_existing_Candidate = "update candidate_details set candidate_name=?,skills=?,qualification=?,passed_out_year=?,interview_date=?,experience=?,grade=?,phone=?,email=?,apply_date=?,job_id=? where candidate_id=?";
 	private final static String Delete_existing_Candidate = "delete from  candidate_details where candidate_id =?";
-	private final static String Select_all_Candidate = "select * from candidate_details c,job_description j,project_details p where c.job_id=j.job_id(+) and j.project_id=p.project_id(+)";
-	private final static String Select_one_Candidate = "select * from candidate_details c,job_description j,project_details p where c.job_id=j.job_id(+) and j.project_id=p.project_id(+) and candidate_id =?";
+	private final static String Select_all_Candidate = "select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id and j.project_id=p.project_id(+)";
+	private final static String Select_one_Candidate = "select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id and j.project_id=p.project_id(+) and candidate_id =?";
 
 	@Override
 	public boolean addNewCandidate(Candidate candidate) {
@@ -27,7 +27,7 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 		Object[] parameters = { candidate.getCandidateName(), candidate.getSkills(),
 				candidate.getQualification(), candidate.getPassedOutYear(), candidate.getInterviewDate(),
 				candidate.getExperience(), candidate.getGrade(), candidate.getPhone(), candidate.getEmail(),
-				candidate.getApplyDate(), candidate.getJobId() };
+				candidate.getApplyDate(),candidate.getStatus(), candidate.getJobId(), };
 		int rowcount=jdbcTemplate.update(Insert_New_Candidate, parameters);
 		if(rowcount>0)
 			return true;

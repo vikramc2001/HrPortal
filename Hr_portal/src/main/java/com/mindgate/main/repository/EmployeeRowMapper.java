@@ -22,14 +22,21 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		String email = rs.getString("email");
 		Date dateOfBirth = rs.getDate("date_of_birth");
 		String designation = rs.getString("designation");
+		String skill1=rs.getString("SKILL1");
+		String skill2=rs.getString("SKILL2");
+		String skill3=rs.getString("SKILL3");
 		double salary = rs.getDouble("salary");
 		String projectId = rs.getString("PROJECT_ID");
 		String managerId = rs.getString("manager_id");
+		
+		
+		
+	
 
 		ProjectRowMapper rowMapper=new ProjectRowMapper();
 		Project project=rowMapper.mapRow(rs, rowNum);
 		
-		Employee employee=new Employee(employeeId, password, firstName, lastName, gender, phoneNo, email, dateOfBirth, designation, salary, projectId, project, managerId);
+		Employee employee=new Employee(employeeId, password, firstName, lastName, gender, phoneNo, email, dateOfBirth, designation, skill1, skill2, skill3, salary, projectId, project, managerId);
 		
 		return employee;
 	}
