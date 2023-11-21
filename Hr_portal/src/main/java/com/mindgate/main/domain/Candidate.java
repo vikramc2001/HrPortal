@@ -6,7 +6,10 @@ public class Candidate {
 
 	private String candidateId;
 	private String candidateName;
-	private String skills;
+	private String skill1;
+	private String skill2;
+	private String skill3;
+	private String title;
 	private String qualification;
 	private String passedOutYear;
 	private Date interviewDate;
@@ -23,13 +26,16 @@ public class Candidate {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Candidate(String candidateId, String candidateName, String skills, String qualification,
-			String passedOutYear, Date interviewDate, String experience, String grade, Long phone, String email,
-			Date applyDate, String jobId, String status, Job job) {
+	public Candidate(String candidateId, String candidateName, String skill1, String skill2, String skill3,
+			String title, String qualification, String passedOutYear, Date interviewDate, String experience,
+			String grade, Long phone, String email, Date applyDate, String jobId, String status, Job job) {
 		super();
 		this.candidateId = candidateId;
 		this.candidateName = candidateName;
-		this.skills = skills;
+		this.skill1 = skill1;
+		this.skill2 = skill2;
+		this.skill3 = skill3;
+		this.title = title;
 		this.qualification = qualification;
 		this.passedOutYear = passedOutYear;
 		this.interviewDate = interviewDate;
@@ -59,12 +65,36 @@ public class Candidate {
 		this.candidateName = candidateName;
 	}
 
-	public String getSkills() {
-		return skills;
+	public String getSkill1() {
+		return skill1;
 	}
 
-	public void setSkills(String skills) {
-		this.skills = skills;
+	public void setSkill1(String skill1) {
+		this.skill1 = skill1;
+	}
+
+	public String getSkill2() {
+		return skill2;
+	}
+
+	public void setSkill2(String skill2) {
+		this.skill2 = skill2;
+	}
+
+	public String getSkill3() {
+		return skill3;
+	}
+
+	public void setSkill3(String skill3) {
+		this.skill3 = skill3;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getQualification() {
@@ -157,10 +187,12 @@ public class Candidate {
 
 	@Override
 	public String toString() {
-		return "Candidate [candidateId=" + candidateId + ", candidateName=" + candidateName + ", skills=" + skills
-				+ ", qualification=" + qualification + ", passedOutYear=" + passedOutYear + ", interviewDate="
-				+ interviewDate + ", experience=" + experience + ", grade=" + grade + ", phone=" + phone + ", email="
-				+ email + ", applyDate=" + applyDate + ", jobId=" + jobId + ", status=" + status + ", job=" + job + "]";
+		return "Candidate [candidateId=" + candidateId + ", candidateName=" + candidateName + ", skill1=" + skill1
+				+ ", skill2=" + skill2 + ", skill3=" + skill3 + ", title=" + title + ", qualification=" + qualification
+				+ ", passedOutYear=" + passedOutYear + ", interviewDate=" + interviewDate + ", experience=" + experience
+				+ ", grade=" + grade + ", phone=" + phone + ", email=" + email + ", applyDate=" + applyDate + ", jobId="
+				+ jobId + ", status=" + status + ", job=" + job + "]";
 	}
 	
-	}
+
+		}

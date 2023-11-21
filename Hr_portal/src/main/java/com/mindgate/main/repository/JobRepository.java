@@ -21,7 +21,7 @@ public class JobRepository implements JobRepositoryInterface {
 	private final static String SELECT_ONE_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and job_id=?";
 
 	private final static String SELECT_JOB_BY_TL = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and j.employee_id=?";
-private final static String SELECT_PENDING_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status  in 'pending'";
+private final static String SELECT_PENDING_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status  in 'Pending'";
     
 private final static String SELECT_POST_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status in 'post'";
 

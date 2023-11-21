@@ -65,5 +65,8 @@ public class CandidateController {
 		public List<Candidate> getCandidateByStatus(@PathVariable String status){
 			return candidateServiceInterface.getCandidateByStatus(status);
 		}
-
+		@RequestMapping(value="getmatchSkill" ,method=RequestMethod.POST)
+		public List<Candidate> getMatchSkill(@RequestBody Candidate candidate){
+			return candidateServiceInterface.getMatchSkill(candidate);
+		}
 }

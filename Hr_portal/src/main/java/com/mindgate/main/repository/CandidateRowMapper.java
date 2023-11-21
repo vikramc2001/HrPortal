@@ -16,7 +16,10 @@ public class CandidateRowMapper implements RowMapper<Candidate> {
 	public Candidate mapRow(ResultSet rs, int rowNum) throws SQLException {
 		String candidateId = rs.getString("candidate_id");
 		String candidateName = rs.getString("candidate_name");
-		String skills = rs.getString("skills");
+	    String skill1=rs.getString("skill_1");
+	    String skill2 =rs.getString("skill_2");
+		String skill3=rs.getString("skill_3");
+		String title=rs.getString("title");
 		String qualification = rs.getString("qualification");
 		String passedOutYear = rs.getString("passed_out_year");
 		Date interviewDate = rs.getDate("interview_date");
@@ -32,7 +35,7 @@ public class CandidateRowMapper implements RowMapper<Candidate> {
 		JobRowMapper jobRowMapper=new JobRowMapper();
 		Job job=jobRowMapper.mapRow(rs, rowNum);
 		
-		Candidate candidate = new Candidate(candidateId, candidateName, skills, qualification, passedOutYear, interviewDate, experience, grade, phone, email, applyDate, jobId, status, job);
+		Candidate candidate = new Candidate(candidateId, candidateName, skill1, skill2, skill3, title, qualification, passedOutYear, interviewDate, experience, grade, phone, email, applyDate, jobId, status, job);
 		return candidate;
 
 	}

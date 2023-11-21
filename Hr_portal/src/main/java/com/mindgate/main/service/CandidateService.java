@@ -55,4 +55,10 @@ public class CandidateService implements CandidateServiceInterface {
 		return candidateRepositoryInterface.getCandidateByStatus(status);
 	}
 
+	@Override
+	public List<Candidate> getMatchSkill(Candidate candidate) {
+		// TODO Auto-generated method stub
+		return candidateRepositoryInterface.getMatchSkill(candidate);
+	}
+
 }

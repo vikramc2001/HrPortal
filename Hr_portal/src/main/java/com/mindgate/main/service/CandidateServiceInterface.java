@@ -18,4 +18,5 @@ public interface CandidateServiceInterface {
     public List<Candidate> getCandidateApplication(String jobId );
     
     public List<Candidate> getCandidateByStatus(String status);
+	public List<Candidate> getMatchSkill(Candidate candidate);
 }
