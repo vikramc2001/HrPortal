@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.mindgate.main.domain.Candidate;
+
 import com.mindgate.main.domain.Job;
 import com.mindgate.main.domain.Project;
 
@@ -22,7 +23,6 @@ public class CandidateRowMapper implements RowMapper<Candidate> {
 		String title=rs.getString("title");
 		String qualification = rs.getString("qualification");
 		String passedOutYear = rs.getString("passed_out_year");
-		Date interviewDate = rs.getDate("interview_date");
 		String experience = rs.getString("experience");
 		String grade = rs.getString("grade");
 		Long phone = rs.getLong("phone");
@@ -30,12 +30,13 @@ public class CandidateRowMapper implements RowMapper<Candidate> {
 		Date applyDate = rs.getDate("apply_date");
 		String status=rs.getString("status");
 		String jobId = rs.getString("job_id");
+		 byte[]resume=rs.getBytes("resume");
 		
 		
 		JobRowMapper jobRowMapper=new JobRowMapper();
 		Job job=jobRowMapper.mapRow(rs, rowNum);
-		
-		Candidate candidate = new Candidate(candidateId, candidateName, skill1, skill2, skill3, title, qualification, passedOutYear, interviewDate, experience, grade, phone, email, applyDate, jobId, status, job);
+		 
+		Candidate candidate =new Candidate(candidateId, candidateName, skill1, skill2, skill3, title, qualification, passedOutYear, experience, grade, phone, email, applyDate, jobId, status, resume, job);
 		return candidate;
 
 	}

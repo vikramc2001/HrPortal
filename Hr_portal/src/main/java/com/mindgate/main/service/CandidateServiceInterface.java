@@ -19,4 +19,6 @@ public interface CandidateServiceInterface {
     
     public List<Candidate> getCandidateByStatus(String status);
 	public List<Candidate> getMatchSkill(Candidate candidate);
+	
+	public boolean updateResume(Candidate candidate);
 }

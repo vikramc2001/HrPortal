@@ -1,5 +1,6 @@
 package com.mindgate.main.domain;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Candidate {
@@ -12,7 +13,6 @@ public class Candidate {
 	private String title;
 	private String qualification;
 	private String passedOutYear;
-	private Date interviewDate;
 	private String experience;
 	private String grade;
 	private Long phone;
@@ -20,15 +20,16 @@ public class Candidate {
 	private Date applyDate;
 	private String jobId;
 	private String status;
+	private byte[] resume;
 	private Job job;
-	 
+
 	public Candidate() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Candidate(String candidateId, String candidateName, String skill1, String skill2, String skill3,
-			String title, String qualification, String passedOutYear, Date interviewDate, String experience,
-			String grade, Long phone, String email, Date applyDate, String jobId, String status, Job job) {
+			String title, String qualification, String passedOutYear, String experience, String grade, Long phone,
+			String email, Date applyDate, String jobId, String status, byte[] resume, Job job) {
 		super();
 		this.candidateId = candidateId;
 		this.candidateName = candidateName;
@@ -38,7 +39,6 @@ public class Candidate {
 		this.title = title;
 		this.qualification = qualification;
 		this.passedOutYear = passedOutYear;
-		this.interviewDate = interviewDate;
 		this.experience = experience;
 		this.grade = grade;
 		this.phone = phone;
@@ -46,6 +46,7 @@ public class Candidate {
 		this.applyDate = applyDate;
 		this.jobId = jobId;
 		this.status = status;
+		this.resume = resume;
 		this.job = job;
 	}
 
@@ -113,14 +114,6 @@ public class Candidate {
 		this.passedOutYear = passedOutYear;
 	}
 
-	public Date getInterviewDate() {
-		return interviewDate;
-	}
-
-	public void setInterviewDate(Date interviewDate) {
-		this.interviewDate = interviewDate;
-	}
-
 	public String getExperience() {
 		return experience;
 	}
@@ -177,6 +170,14 @@ public class Candidate {
 		this.status = status;
 	}
 
+	public byte[] getResume() {
+		return resume;
+	}
+
+	public void setResume(byte[] resume) {
+		this.resume = resume;
+	}
+
 	public Job getJob() {
 		return job;
 	}
@@ -189,10 +190,12 @@ public class Candidate {
 	public String toString() {
 		return "Candidate [candidateId=" + candidateId + ", candidateName=" + candidateName + ", skill1=" + skill1
 				+ ", skill2=" + skill2 + ", skill3=" + skill3 + ", title=" + title + ", qualification=" + qualification
-				+ ", passedOutYear=" + passedOutYear + ", interviewDate=" + interviewDate + ", experience=" + experience
-				+ ", grade=" + grade + ", phone=" + phone + ", email=" + email + ", applyDate=" + applyDate + ", jobId="
-				+ jobId + ", status=" + status + ", job=" + job + "]";
+				+ ", passedOutYear=" + passedOutYear + ", experience=" + experience + ", grade=" + grade + ", phone="
+				+ phone + ", email=" + email + ", applyDate=" + applyDate + ", jobId=" + jobId + ", status=" + status
+				+ ", resume=" + Arrays.toString(resume) + ", job=" + job + "]";
 	}
+
 	
 
+	
 		}

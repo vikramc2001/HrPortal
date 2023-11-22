@@ -1,17 +1,24 @@
 package com.mindgate.main.controller;
 
+import java.io.IOException;
+import org.springframework.util.StringUtils;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mindgate.main.domain.Candidate;
 import com.mindgate.main.service.CandidateServiceInterface;
+
+
 
 @RestController
 @CrossOrigin("*")
@@ -69,4 +76,24 @@ public class CandidateController {
 		public List<Candidate> getMatchSkill(@RequestBody Candidate candidate){
 			return candidateServiceInterface.getMatchSkill(candidate);
 		}
+		
+		@RequestMapping(value = "upload/{candidateId}", method = RequestMethod.PUT)
+	    public boolean uploadResume(@PathVariable String candidateId , @RequestParam("file") MultipartFile file) {
+	        Candidate candidate = new Candidate();
+	        candidate.setCandidateName(StringUtils.cleanPath(file.getOriginalFilename()));
+	        candidate.setCandidateId(candidateId);
+	        try {
+	            candidate.setResume(file.getBytes());
+	        } catch (IOException e) {
+	            System.out.println("Exception while file upload");
+	        }
+	        return candidateServiceInterface.updateResume(candidate);
+	    }
+		@RequestMapping(value = "/files/{candidateId}")
+	    public ResponseEntity<byte[]> getFile(@PathVariable String candidateId) {
+	        Candidate candidate = candidateServiceInterface.getCandidateByCandidateId(candidateId);
+	        return ResponseEntity.ok()
+	                .header(org.springframework.http.HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + candidate.getCandidateName() + "\"")
+	                .body(candidate.getResume());
+	    }
 }

@@ -61,4 +61,10 @@ public class CandidateService implements CandidateServiceInterface {
 		return candidateRepositoryInterface.getMatchSkill(candidate);
 	}
 
+	@Override
+	public boolean updateResume(Candidate candidate) {
+		// TODO Auto-generated method stub
+		return candidateRepositoryInterface.updateResume(candidate);
+	}
+
 }
