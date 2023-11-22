@@ -17,8 +17,8 @@ public class AssessmentRepository implements AssessmentRepositoryInterface {
 	private final static String Insert_New_Assessment = "insert into assessment_details values('AST'||assessment_sequence.nextVal,?,?,?,?,?)";
 	private final static String Update_existing_Assessment = "update assessment_details  set round_1=?,round_2=?,round_3=?,status=?,candidate_id=? where assessment_id=?";
 	private final static String Delete_existing_Assessment = "delete from assessment_details where assessment_Id=?";
-	private final static String Select_one_Assessment = "select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c,JOB_DESCRIPTION j,PROJECT_DETAILS p where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.job_id=j.job_id(+) and j.project_id=p.project_id(+) and assessment_Id=?";
-	private final static String Select_all_Assessment = "select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c,JOB_DESCRIPTION j,PROJECT_DETAILS p where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.job_id=j.job_id(+) and j.project_id=p.project_id(+)";
+	private final static String Select_one_Assessment = "select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c,JOB_DESCRIPTION j,EMPLOYEE_DETAILS e,PROJECT_DETAILS p  where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.job_id=j.job_id(+) and j.project_id=p.project_id(+) and j.EMPLOYEE_ID=e.EMPLOYEE_ID(+) and assessment_Id=?";
+	private final static String Select_all_Assessment = "select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c,JOB_DESCRIPTION j,EMPLOYEE_DETAILS e,PROJECT_DETAILS p  where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.job_id=j.job_id(+) and j.project_id=p.project_id(+) and j.EMPLOYEE_ID=e.EMPLOYEE_ID(+)";
 
 	@Override
 	public boolean addNewAssessment(Assessment assessment) {

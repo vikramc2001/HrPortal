@@ -30,7 +30,7 @@ public class CandidateRowMapper implements RowMapper<Candidate> {
 		Date applyDate = rs.getDate("apply_date");
 		String status=rs.getString("status");
 		String jobId = rs.getString("job_id");
-		 byte[]resume=rs.getBytes("resume");
+		 byte []resume=rs.getBytes("resume");
 		
 		
 		JobRowMapper jobRowMapper=new JobRowMapper();

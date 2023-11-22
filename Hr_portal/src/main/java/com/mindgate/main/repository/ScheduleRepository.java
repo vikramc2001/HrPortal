@@ -17,8 +17,8 @@ public class ScheduleRepository implements ScheduleRepositoryInterface {
 	private final static String INSERT_NEW_SCHEDULE = "insert into scheduled_details values('SCH'||scheduled_sequence.NEXTVAL,?,?,?,?,?)";
 	private final static String UPDATE_EXISTING_SCHEDULE="update scheduled_details set candidate_id=?,interviewer_id=?,interview_date=?,interview_status=?,assessment_id=? where schedule_id=?";
 	private final static String DELETE_EXISTING_SCHEDULE="delete from scheduled_details where schedule_id=?";
-	private final static String SELECT_ALL_SCHEDULE ="SELECT * FROM scheduled_details s LEFT JOIN assessment_details a ON s.assessment_id = a.assessment_id LEFT JOIN candidate_details c ON s.candidate_id = c.candidate_id LEFT JOIN job_description j ON c.job_id = j.job_id LEFT JOIN project_details p ON j.project_id = p.project_id";
-	private final static String SELECT_ONE_SCHEDULE="SELECT * FROM scheduled_details s LEFT JOIN assessment_details a ON s.assessment_id = a.assessment_id LEFT JOIN candidate_details c ON s.candidate_id = c.candidate_id LEFT JOIN job_description j ON c.job_id = j.job_id LEFT JOIN project_details p ON j.project_id = p.project_id where schedule_id=?";
+	private final static String SELECT_ALL_SCHEDULE ="SELECT * FROM scheduled_details s,assessment_details a,candidate_details c,job_description j,employee_details e,project_details p where s.assessment_id = a.assessment_id and s.candidate_id = c.candidate_id and c.job_id = j.job_id and j.project_id = p.project_id and j.employee_id=e.employee_id";
+	private final static String SELECT_ONE_SCHEDULE="SELECT * FROM scheduled_details s,assessment_details a,candidate_details c,job_description j,employee_details e,project_details p where s.assessment_id = a.assessment_id and s.candidate_id = c.candidate_id and c.job_id = j.job_id and j.project_id = p.project_id and j.employee_id=e.employee_id and schedule_id=?";
 
 	@Override
 	public boolean addNewSchedule(Schedule schedule) {

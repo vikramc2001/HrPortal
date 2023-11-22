@@ -29,9 +29,6 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		String projectId = rs.getString("PROJECT_ID");
 		String managerId = rs.getString("manager_id");
 		
-		
-		
-	
 
 		ProjectRowMapper rowMapper=new ProjectRowMapper();
 		Project project=rowMapper.mapRow(rs, rowNum);
