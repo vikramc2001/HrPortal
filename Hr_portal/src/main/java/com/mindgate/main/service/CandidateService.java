@@ -68,5 +68,11 @@ public class CandidateService implements CandidateServiceInterface {
 		return candidateRepositoryInterface.updateResume(candidate);
 	}
 
+	@Override
+	public List<Candidate> getSelectedCandidate() {
+		// TODO Auto-generated method stub
+		return candidateRepositoryInterface.getSelectedCandidate();
+	}
+	
 
 }

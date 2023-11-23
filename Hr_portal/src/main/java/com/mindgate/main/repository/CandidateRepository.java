@@ -15,18 +15,19 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	private final static String Insert_New_Candidate = "insert into candidate_details values('CAN'||candidate_sequence.nextVal,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	private final static String Update_existing_Candidate = "update candidate_details set candidate_name=?,skill_1=?, skill_2=?, skill_3=?,title=?, qualification=?,passed_out_year=?,experience=?,grade=?,phone=?,email=?,apply_date=?,job_id=?,resume=?, where candidate_id=?";
+	private final static String Insert_New_Candidate = "insert into candidate_details (candidate_id,candidate_name,skill_1,skill_2,skill_3,title,qualification,passed_out_year,experience,grade,phone,email,apply_date,job_id,status) values('CAN'||candidate_sequence.nextVal,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private final static String Update_existing_Candidate = "update candidate_details set candidate_name=?,skill_1=?, skill_2=?, skill_3=?,title=?, qualification=?,passed_out_year=?,experience=?,grade=?,phone=?,email=?,apply_date=?,job_id=?,status=? where candidate_id=?";
 	private final static String Delete_existing_Candidate = "delete from  candidate_details where candidate_id =?";
 	private final static String Select_all_Candidate = "select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+)  and j.employee_id=e.employee_id and j.project_id=p.project_id(+)";
 	private final static String Select_one_Candidate = "select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id and j.project_id=p.project_id(+) and candidate_id =?";
-	private final static String Get_Application_Candidate="select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and c.job_id =?";
+	private final static String Get_Application_Candidate="select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and c.job_id =? ";
 
 	 private final static String Get_Candidate_status="select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and c.status=?";
 	 
-	 private final static String Get_Skill_Match="select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id and j.project_id=p.project_id(+) and ? in(c.skill_1,c.skill_2,c.skill_3) and ? in (c.skill_1,c.skill_2,c.skill_3) and c.title=?";
+	 private final static String Get_Skill_Match="select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id and j.project_id=p.project_id(+) and ? in(c.skill_1,c.skill_2,c.skill_3) and ? in (c.skill_1,c.skill_2,c.skill_3) and c.title=? and c.status='Applied'";
 	 
-	 private final static String update_Resume="update candidate_details set resume=? where candidate_id=?";
+	 private final static String update_Resume="update candidate_details set resume=? where email=?";
+	 private final static String Selected_candidate="select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id and j.project_id=p.project_id(+) and c.status='Selected'";
 	 
 	 private final static String GET_ASSESSMENT_DETAILS_BY_CANDIDATEID="select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.CANDIDATE_ID=?";
 	 
@@ -37,7 +38,7 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 		Object[] parameters = { candidate.getCandidateName(),candidate.getSkill1(),candidate.getSkill2(),candidate.getSkill3() ,
 				candidate.getTitle(), candidate.getQualification(), candidate.getPassedOutYear(),
 				candidate.getExperience(), candidate.getGrade(), candidate.getPhone(), candidate.getEmail(),
-				candidate.getApplyDate(),candidate.getStatus(), candidate.getJobId(),candidate.getResume() };
+				candidate.getApplyDate(), candidate.getJobId(),candidate.getStatus() };
 		int rowcount=jdbcTemplate.update(Insert_New_Candidate, parameters);
 		if(rowcount>0)
 			return true;
@@ -50,7 +51,7 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 		Object[] parameters = { candidate.getCandidateName(), candidate.getSkill1(),candidate.getSkill2(),candidate.getSkill3(),candidate.getTitle(), candidate.getQualification(),
 				candidate.getPassedOutYear(),  candidate.getExperience(),
 				candidate.getGrade(), candidate.getPhone(), candidate.getEmail(), candidate.getApplyDate(),
-				candidate.getJobId(),candidate.getResume(), candidate.getCandidateId() };
+				candidate.getJobId(),candidate.getStatus(), candidate.getCandidateId() };
 		int rowcount = jdbcTemplate.update(Update_existing_Candidate, parameters);
 		if (rowcount > 0) {
 			return getCandidateByCandidateId(candidate.getCandidateId());
@@ -102,7 +103,7 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 
 	@Override
 	public boolean updateResume(Candidate candidate) {
-		Object []parameter= {candidate.getResume(),candidate.getCandidateId()};
+		Object []parameter= {candidate.getResume(),candidate.getEmail()};
 		int row= jdbcTemplate.update(update_Resume, parameter);
 	if(row>0) {
 		return true;
@@ -110,6 +111,13 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 	else {
 		return false;
 	}
+	}
+
+	public List<Candidate> getSelectedCandidate(){
+		CandidateRowMapper candidateRowMapper = new CandidateRowMapper();
+		
+		 return jdbcTemplate.query(Selected_candidate, candidateRowMapper);
+		
 	}
 
 

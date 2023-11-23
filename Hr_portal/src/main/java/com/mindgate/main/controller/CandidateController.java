@@ -78,11 +78,11 @@ public class CandidateController {
 			return candidateServiceInterface.getMatchSkill(candidate);
 		}
 		
-		@RequestMapping(value = "upload/{candidateId}", method = RequestMethod.PUT)
-	    public boolean uploadResume(@PathVariable String candidateId , @RequestParam("file") MultipartFile file) {
+		@RequestMapping(value = "upload/{email}", method = RequestMethod.PUT)
+	    public boolean uploadResume(@PathVariable String email , @RequestParam("file") MultipartFile file) {
 	        Candidate candidate = new Candidate();
 	        candidate.setCandidateName(StringUtils.cleanPath(file.getOriginalFilename()));
-	        candidate.setCandidateId(candidateId);
+	        candidate.setEmail(email);
 	        try {
 	            candidate.setResume(file.getBytes());
 	        } catch (IOException e) {
@@ -96,6 +96,11 @@ public class CandidateController {
 	        return ResponseEntity.ok()
 	                .header(org.springframework.http.HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + candidate.getCandidateName() + "\"")
 	                .body(candidate.getResume());
+	    }
+	   // http://localhost:8081/candidateApi/selectedcandidate
+	    @RequestMapping(value="selectedcandidate" ,method=RequestMethod.GET)
+	    public List<Candidate> getSelectedCandidate(){
+	    	return candidateServiceInterface.getSelectedCandidate();
 	    }
 	   
 }

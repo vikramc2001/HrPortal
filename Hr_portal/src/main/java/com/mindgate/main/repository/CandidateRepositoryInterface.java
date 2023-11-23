@@ -22,5 +22,6 @@ public interface CandidateRepositoryInterface {
 	public List<Candidate> getMatchSkill(Candidate candidate);
 	
 	public boolean updateResume(Candidate candidate);
+	public List<Candidate> getSelectedCandidate();
 	
 }
