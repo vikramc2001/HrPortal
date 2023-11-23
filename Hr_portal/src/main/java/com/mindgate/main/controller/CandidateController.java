@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mindgate.main.domain.Assessment;
 import com.mindgate.main.domain.Candidate;
 import com.mindgate.main.service.CandidateServiceInterface;
 
@@ -96,4 +97,5 @@ public class CandidateController {
 	                .header(org.springframework.http.HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + candidate.getCandidateName() + "\"")
 	                .body(candidate.getResume());
 	    }
+	   
 }

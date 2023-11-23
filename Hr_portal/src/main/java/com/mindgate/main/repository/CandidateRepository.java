@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mindgate.main.domain.Assessment;
 import com.mindgate.main.domain.Candidate;
 
 @Repository
@@ -26,6 +27,9 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 	 private final static String Get_Skill_Match="select * from candidate_details c,job_description j,employee_details e,project_details p where c.job_id=j.job_id(+) and j.employee_id=e.employee_id and j.project_id=p.project_id(+) and ? in(c.skill_1,c.skill_2,c.skill_3) and ? in (c.skill_1,c.skill_2,c.skill_3) and c.title=?";
 	 
 	 private final static String update_Resume="update candidate_details set resume=? where candidate_id=?";
+	 
+	 private final static String GET_ASSESSMENT_DETAILS_BY_CANDIDATEID="select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.CANDIDATE_ID=?";
+	 
 	@Override
 	public boolean addNewCandidate(Candidate candidate) {
 		// TODO Auto-generated method stub
@@ -107,5 +111,6 @@ public class CandidateRepository implements CandidateRepositoryInterface {
 		return false;
 	}
 	}
+
 
 }

@@ -2,6 +2,7 @@ package com.mindgate.main.repository;
 
 import java.util.List;
 
+import com.mindgate.main.domain.Assessment;
 import com.mindgate.main.domain.Candidate;
 
 public interface CandidateRepositoryInterface {
@@ -21,4 +22,5 @@ public interface CandidateRepositoryInterface {
 	public List<Candidate> getMatchSkill(Candidate candidate);
 	
 	public boolean updateResume(Candidate candidate);
+	
 }

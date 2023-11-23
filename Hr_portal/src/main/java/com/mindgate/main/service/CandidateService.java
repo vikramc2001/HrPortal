@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mindgate.main.domain.Assessment;
 import com.mindgate.main.domain.Candidate;
 import com.mindgate.main.repository.CandidateRepositoryInterface;
 
@@ -66,5 +67,6 @@ public class CandidateService implements CandidateServiceInterface {
 		// TODO Auto-generated method stub
 		return candidateRepositoryInterface.updateResume(candidate);
 	}
+
 
 }
