@@ -17,11 +17,11 @@ public class JobRepository implements JobRepositoryInterface {
 	private final static String INSERT_NEW_JOB_DESCRIPTION = "insert into job_description values('JOB' || job_sequence.nextVal,?,?,?,?,?,?,?,?,?)";
 	private final static String DELETE_EXISTING_JOB_DESCRIPTION = "delete from job_description where job_Id=?";
 	private final static String UPDATE_JOB_DESCRIPTION = "update job_description set title=?,qualification=?,skill_1=?,skill_2=?,skill_3=?,project_id=?,employee_id=?,required_employees=?,status=? where job_id=?";
-	private final static String SELECT_ALL_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status not in 'Closed'";
+	private final static String SELECT_ALL_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status not in 'Closed' and j.required_employees>0";
 	private final static String SELECT_ONE_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and job_id=?";
 
 	private final static String SELECT_JOB_BY_TL = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and j.employee_id=?";
-	private final static String SELECT_PENDING_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status  in 'Pending'";
+	private final static String SELECT_PENDING_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and status  in 'Pending' and j.required_employees>0";
     
 	private final static String SELECT_POST_JOB = "select * from job_description j,employee_details e,project_details p where j.employee_id=e.employee_id(+) and j.project_id=p.project_id(+) and j.status in 'Post' and j.required_employees>0";
 
