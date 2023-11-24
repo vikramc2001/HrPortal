@@ -54,4 +54,12 @@ public class AssessmentController {
 		return assessmentServiceInterface.getAllAssessment();
 
 	}
+	
+//  http://localhost:8081/assessmentapi/getonebycandidateid/
+	@RequestMapping(value = "getonebycandidateid/{candidateId}", method = RequestMethod.GET)
+	public Assessment getOneAssessmentIDByCandidateId(@PathVariable String candidateId) {
+
+		return assessmentServiceInterface.getOneAssessmentIDByCandidateId(candidateId);
+
+	}	
 }

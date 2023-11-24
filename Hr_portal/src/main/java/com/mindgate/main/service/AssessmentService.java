@@ -45,4 +45,10 @@ public class AssessmentService implements AssessmentServiceInterface {
 		return assessmentRepositoryInterface.getAllAssessment();
 	}
 
+	@Override
+	public Assessment getOneAssessmentIDByCandidateId(String candidateId) {
+		// TODO Auto-generated method stub
+		return assessmentRepositoryInterface.getOneAssessmentIDByCandidateId(candidateId);
+	}
+
 }

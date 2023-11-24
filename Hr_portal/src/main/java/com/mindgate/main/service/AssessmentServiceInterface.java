@@ -17,5 +17,6 @@ public interface AssessmentServiceInterface  {
     
     public List<Assessment> getAllAssessment();
 
-    
+	public Assessment getOneAssessmentIDByCandidateId(String candidateId);
+
 }

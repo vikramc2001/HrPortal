@@ -46,4 +46,9 @@ public class ScheduleController {
 	public Schedule updateEmployee(@RequestBody Schedule schedule) {
 		return scheduleServiceInterface.updateSchedule(schedule);
 	}
+	
+	@RequestMapping(value="getallschedule/{interviewerId}",method = RequestMethod.GET)
+	public List<Schedule> allSchedulesByInterviewerId(@PathVariable String interviewerId){
+		return scheduleServiceInterface.getAllSchedulesByInterviewerId(interviewerId);
+	}
 }

@@ -44,4 +44,10 @@ public class ScheduleService implements ScheduleServiceInterface {
 		return scheduleRepositoryInterface.getAllSchedules();
 	}
 
+	@Override
+	public List<Schedule> getAllSchedulesByInterviewerId(String interviewerId) {
+		// TODO Auto-generated method stub
+		return scheduleRepositoryInterface.getAllSchedulesByInterviewerId(interviewerId);
+	}
+
 }

@@ -15,4 +15,6 @@ public interface ScheduleRepositoryInterface {
 	Schedule getScheduleByScheduleId(String scheduleId);
 	
 	List<Schedule> getAllSchedules();
+	
+	List<Schedule> getAllSchedulesByInterviewerId(String interviewerId);
 }

@@ -20,33 +20,25 @@ public class AssessmentRepository implements AssessmentRepositoryInterface {
 	private final static String Select_one_Assessment = "select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c,JOB_DESCRIPTION j,EMPLOYEE_DETAILS e,PROJECT_DETAILS p  where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.job_id=j.job_id(+) and j.project_id=p.project_id(+) and j.EMPLOYEE_ID=e.EMPLOYEE_ID(+) and assessment_Id=?";
 	private final static String Select_all_Assessment = "select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c,JOB_DESCRIPTION j,EMPLOYEE_DETAILS e,PROJECT_DETAILS p  where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.job_id=j.job_id(+) and j.project_id=p.project_id(+) and j.EMPLOYEE_ID=e.EMPLOYEE_ID(+)";
 
+	private final static String Select_one_Assessment_BY_CANDIDATEID = "select * from ASSESSMENT_DETAILS a,CANDIDATE_DETAILS c,JOB_DESCRIPTION j,EMPLOYEE_DETAILS e,PROJECT_DETAILS p  where a.CANDIDATE_ID=c.CANDIDATE_ID(+) and c.job_id=j.job_id(+) and j.project_id=p.project_id(+) and j.EMPLOYEE_ID=e.EMPLOYEE_ID(+) and a.candidate_Id=?";
+
+	
 	@Override
 	public boolean addNewAssessment(Assessment assessment) {
-		Object[] param = { 
-				assessment.getRound1(),
-				assessment.getRound2(),
-				assessment.getRound3(), 
-				assessment.getStatus(),
-				assessment.getCandidateId()
-				};
-	     int result=jdbcTemplate.update(Insert_New_Assessment, param);
-		 if(result>0)
-			 return true;
-			else {
-				return false;
-			}
-	 }
+		Object[] param = { assessment.getRound1(), assessment.getRound2(), assessment.getRound3(),
+				assessment.getStatus(), assessment.getCandidateId() };
+		int result = jdbcTemplate.update(Insert_New_Assessment, param);
+		if (result > 0)
+			return true;
+		else {
+			return false;
+		}
+	}
 
 	@Override
 	public Assessment updateAssessment(Assessment assessment) {
-		Object[] parameters = {
-				assessment.getRound1(),
-				assessment.getRound2(),
-				assessment.getRound3(),
-				assessment.getStatus(),
-				assessment.getCandidateId(),
-				assessment.getAssessmentId()
-				};
+		Object[] parameters = { assessment.getRound1(), assessment.getRound2(), assessment.getRound3(),
+				assessment.getStatus(), assessment.getCandidateId(), assessment.getAssessmentId() };
 		int rowcount = jdbcTemplate.update(Update_existing_Assessment, parameters);
 		if (rowcount > 0) {
 			return getOneAssessmentID(assessment.getAssessmentId());
@@ -59,25 +51,31 @@ public class AssessmentRepository implements AssessmentRepositoryInterface {
 	@Override
 	public boolean deleteAssessment(String assessmentId) {
 
-	    jdbcTemplate.update(Delete_existing_Assessment, assessmentId);
+		jdbcTemplate.update(Delete_existing_Assessment, assessmentId);
 		return true;
-		}
+	}
 
 	@Override
 	public Assessment getOneAssessmentID(String assessmentId) {
 
 		AssessmentRowMapper assessmentRowMapper = new AssessmentRowMapper();
-        Assessment assessment = jdbcTemplate.queryForObject(
-        		                Select_one_Assessment, assessmentRowMapper, assessmentId);
+		Assessment assessment = jdbcTemplate.queryForObject(Select_one_Assessment, assessmentRowMapper, assessmentId);
 		return assessment;
 	}
 
 	@Override
 	public List<Assessment> getAllAssessment() {
-		
-		AssessmentRowMapper assessmentRowMapper = new AssessmentRowMapper();
-        return jdbcTemplate.query(Select_all_Assessment, assessmentRowMapper);
 
+		AssessmentRowMapper assessmentRowMapper = new AssessmentRowMapper();
+		return jdbcTemplate.query(Select_all_Assessment, assessmentRowMapper);
+
+	}
+
+	@Override
+	public Assessment getOneAssessmentIDByCandidateId(String candidateId) {
+		AssessmentRowMapper assessmentRowMapper = new AssessmentRowMapper();
+		
+		return jdbcTemplate.queryForObject(Select_one_Assessment_BY_CANDIDATEID, assessmentRowMapper, candidateId);
 	}
 
 }

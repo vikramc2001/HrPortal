@@ -16,4 +16,6 @@ public interface AssessmentRepositoryInterface {
 
 	public List<Assessment> getAllAssessment();
 
+	public Assessment getOneAssessmentIDByCandidateId(String candidateId);
+
 }
