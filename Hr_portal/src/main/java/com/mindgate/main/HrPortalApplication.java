@@ -10,6 +10,7 @@ public class HrPortalApplication {
 		
 		SpringApplication.run(HrPortalApplication.class, args);
 		System.out.println("application running");
+		System.out.println("application running completed");
 	}
 
 }
