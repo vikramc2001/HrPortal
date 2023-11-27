@@ -9,8 +9,7 @@ public class HrPortalApplication {
 	public static void main(String[] args) {
 		
 		SpringApplication.run(HrPortalApplication.class, args);
-		System.out.println("application running");
-		System.out.println("application running completed");
+		System.out.println("Application Running Successfully...");
 	}
 
 }

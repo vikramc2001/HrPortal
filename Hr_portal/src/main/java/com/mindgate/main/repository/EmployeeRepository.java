@@ -85,7 +85,7 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 	@Override
 	public Employee getEmployeeByEmployeeId(String employeeId) {
 		EmployeeRowMapper employeeRowMapper=new EmployeeRowMapper();
-		return jdbcTemplate.queryForObject(SELECT_ONE_EMPLOYEE, employeeRowMapper, employeeId);
+		return  jdbcTemplate.queryForObject(SELECT_ONE_EMPLOYEE, employeeRowMapper, employeeId);
 	}
 
 	@Override
@@ -100,7 +100,5 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 		EmployeeRowMapper employeeRowMapper=new EmployeeRowMapper();
 		return jdbcTemplate.query(GetWorkBench, employeeRowMapper ,parameter);
 	}
-
-	
 
 }

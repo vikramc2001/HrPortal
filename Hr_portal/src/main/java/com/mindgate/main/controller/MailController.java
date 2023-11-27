@@ -37,7 +37,7 @@ public class MailController {
 	            emailService.sendSimpleEmail(emailSender.getMailId(), "Mindgate Hiring Onboarding", "Dear "
 	                    + emailSender.getName() + " ,\r\n" + "\r\n" + " \r\n" + "\r\n"
 	                    + "Mindgate Offer letter :\r\n" + "\r\n" + " \r\n" + "\r\n"
-	                    + "Conguralation! You'r Selected on the Interview Happy to Welcome in to the MGS! " +" at the Venue - 7th Floor, Prestige Polygon, No 471, Anna Salai, Rathna Nagar Teynampet, Nandanam, Chennai – 600035. Opp to Rain tree hotel\r\n"
+	                    + "Conguralation! You'r Selected on the Interview Happy to Welcome in to the MGS!  You'r Package is 6.5 LPA " +" at the Venue - 7th Floor, Prestige Polygon, No 471, Anna Salai, Rathna Nagar Teynampet, Nandanam, Chennai – 600035. Opp to Rain tree hotel\r\n"
 	                    + "\r\n" + " \r\n" + "\r\n"
 	                    + "You are requested to reach the venue 30 minutes prior .");
 //	            emailService.sendEmail("sudarshan.vive@gmail.com", "Confirmation", "ConfirmationBody");

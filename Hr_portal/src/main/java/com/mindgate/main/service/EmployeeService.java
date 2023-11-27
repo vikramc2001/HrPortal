@@ -53,12 +53,13 @@ public class EmployeeService implements EmployeeServiceInterface {
 		if(employeeId.equals(oldEmployee.getEmployeeId()))
 				{
 				if( password.equals(oldEmployee.getPassword())){
+	
 					return oldEmployee;
 				
 				}
 		}
-		 System.out.println("invalid data");
-		return null;
+		 employee.setDesignation("null");
+		return employee;
 	}
 
 	@Override
