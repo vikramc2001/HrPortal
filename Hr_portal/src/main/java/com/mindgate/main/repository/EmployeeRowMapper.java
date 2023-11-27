@@ -29,9 +29,13 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		String projectId = rs.getString("PROJECT_ID");
 		String managerId = rs.getString("manager_id");
 		
+//		String projectId=rs.getString("project_id");
+		String projectName = rs.getString("project_name");
+		Date startDate = rs.getDate("start_date");
+		Date endDate = rs.getDate("end_date");
+		double budget = rs.getDouble("budget");
 
-		ProjectRowMapper rowMapper=new ProjectRowMapper();
-		Project project=rowMapper.mapRow(rs, rowNum);
+		Project project = new Project(projectId, projectName, startDate, endDate, budget);
 		
 		Employee employee=new Employee(employeeId, password, firstName, lastName, gender, phoneNo, email, dateOfBirth, designation, skill1, skill2, skill3, salary, projectId, project, managerId);
 		

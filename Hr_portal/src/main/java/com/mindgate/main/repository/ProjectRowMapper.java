@@ -18,9 +18,9 @@ public class ProjectRowMapper implements RowMapper<Project>{
 		Date endDate=rs.getDate("end_date");
 		double budget=rs.getDouble("budget");
 		
-		Project projectDetails=new Project(projectId, projectName, startDate, endDate, budget);
+		Project project=new Project(projectId, projectName, startDate, endDate, budget);
 		
-		return projectDetails ;
+		return project ;
 			
 	}
 
